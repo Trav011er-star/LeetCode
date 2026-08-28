@@ -11,15 +11,8 @@ class Solution(object):
         第二行 -> 第三列
         。。。
         """
-        origin_matrix = [[0] * len(matrix)] * len(matrix)
-        print(origin_matrix)
         # 逐行复制，避免内部列表仍指向同一位置
-        for i in range(len(matrix)):
-            # 行
-            for j in range(len(matrix)):
-                # 列
-                origin_matrix[i][j] = matrix[i][j]
-        print(origin_matrix)
+        origin_matrix = [row.copy() for row in matrix]
 
         for i in range(len(matrix)):
             # 行

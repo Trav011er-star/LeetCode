@@ -13,12 +13,23 @@ class Solution(object):
         m = len(matrix)
         n = len(matrix[0])
 
+        # 方法一
+        # for i in range(m):
+        #     for j in range(n):
+        #         if matrix[i][j] > target:
+        #             break
+        #         if matrix[i][j] == target:
+        #             return True
+
+        # 方法二（右上角）
         for i in range(m):
-            for j in range(n):
-                if matrix[i][j] > target:
-                    break
-                if matrix[i][j] == target:
-                    return True
+            if matrix[i][n - 1] == target:
+                return True
+            elif matrix[i][n - 1] > target:
+                for j in range(n - 2, -1, -1):
+                    if matrix[i][j] == target:
+                        return True
+            # 如果比当前行最右侧的值大，那当前行其他数字也不用看了，开始看下一行
 
         return False
 
