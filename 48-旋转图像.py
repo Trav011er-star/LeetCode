@@ -11,17 +11,33 @@ class Solution(object):
         第二行 -> 第三列
         。。。
         """
+
+        # 方法一
         # 逐行复制，避免内部列表仍指向同一位置
-        origin_matrix = [row.copy() for row in matrix]
+        # origin_matrix = [row.copy() for row in matrix]
+
+        # for i in range(len(matrix)):
+        #     # 行
+        #     for j in range(len(matrix)):
+        #         # 列
+        #         matrix[j][len(matrix) - i - 1] = origin_matrix[i][j]
+        #         print(
+        #             f"{origin_matrix[i][j]} - ({i},{j}) - ({j},{len(matrix) - i - 1})"
+        #         )
+
+        # 方法二
+        # 1.沿主对角线转置矩阵
+        # 2.反转每一行
+        for i in range(len(matrix)):
+            # 只遍历主对角线右上方，避免重复交换
+            for j in range(i + 1, len(matrix)):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        print(matrix)
 
         for i in range(len(matrix)):
-            # 行
-            for j in range(len(matrix)):
-                # 列
-                matrix[j][len(matrix) - i - 1] = origin_matrix[i][j]
-                print(
-                    f"{origin_matrix[i][j]} - ({i},{j}) - ({j},{len(matrix) - i - 1})"
-                )
+            # matrix[i][:] = matrix[i][::-1]
+            matrix[i].reverse()
+            print(matrix[i][:])
 
         return matrix
 
