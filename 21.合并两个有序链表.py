@@ -28,12 +28,10 @@ class Solution(object):
                 current_result.next = current1
                 current1 = current1.next
                 current_result = current_result.next
-        if current1 is None:
-            current_result.next = current2
-            return head_result.next
-        if current1 is None:
-            current_result.next = current1
-            return head_result.next
+
+        current_result.next = current2 if not current1 else current1
+
+        return head_result.next
 
 
 def main():
